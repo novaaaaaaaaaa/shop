@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Add Stock Item</h1>
+
+<form action="{% url 'shop:add_stock' %}" method="post">
+
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <input type="submit" value="Add">
+
+</form>
+
+<br>
+
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <form action="{% url 'shop:add_to_cart' %}" method="post">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Add to cart</button>
+        
+    </form>
+
+{% endblock %}

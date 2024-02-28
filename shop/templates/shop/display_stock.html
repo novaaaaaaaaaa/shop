@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <!-- <table class="table table-striped">
+
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ItemID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price (£)</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for item in items %}
+
+                <tr>
+
+                    <th scope="row">{{ item.id }}</th>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.description }}</td>
+                    <td>{{ item.price }}</td>
+
+                </tr>
+
+            {% endfor %}
+        </tbody>
+
+    </table> -->
+
+    <div class="row col-md-12">
+
+        {% for item in items %}
+
+        <div class="card col-md-3" style="width: 18rem;">
+            <img class="card-img-top" src="{% static 'imgs/placeholder_image.png' %}" alt="Card image cap">
+            <div class="card-body">
+            <h5 class="card-title">{{item.name}}</h5>
+            <p class="card-text">£{{item.price}}</p>
+            <p class="card-text">{{item.description}}</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+{% endblock %}
