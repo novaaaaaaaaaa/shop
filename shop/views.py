@@ -70,14 +70,20 @@ def add_to_shopping_list(request):
         form = AddToShoppingList(request.POST)
         if form.is_valid():
             form.save()
-            latest_record = ShoppingListItems.objects.all()[-1]
+            records = ShoppingListItems.objects.all()
+            latest_record = records[len(records)-1]
+            print(latest_record)
             current_user = request.user
-            latest_record.user = current_user.id
+            latest_record.user = current_user
             latest_record.save()
 
             return redirect('shop:shopping_list')
-        return render(request, 'add_to_shopping_list.html', {'form':form})
+        return render(request, 'shop/add_to_shopping_list.html', {'form':form})
     else:
         form = AddToShoppingList()
-        return render(request, 'add_to_shopping_list.html', {'form':form})
+        return render(request, 'shop/add_to_shopping_list.html', {'form':form})
 
+def shopping_list(request):
+    user_list_items = ShoppingListItems.objects.filter(user=request.user).values()
+
+    return render(request, 'shop/shopping_list.html', {'list_items':user_list_items})

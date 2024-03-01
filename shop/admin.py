@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile, Stock, CartItems
+from .models import Profile, Stock, CartItems, ShoppingListItems
 from django.contrib.auth.models import User
 
 # Register your models here.
@@ -17,3 +17,4 @@ admin.site.register(User, UserAdmin)
 
 admin.site.register(Stock)
 admin.site.register(CartItems)
+admin.site.register(ShoppingListItems)

@@ -31,8 +31,8 @@ class AddToCart(ModelForm):
         fields = [ "item", "quantity" ]
 
 class AddToShoppingList(ModelForm):
-    item = forms.CharField(label="Name", widget=forms.TextInput(attrs={'placeholder':'Item Name', 'class':'form-control'}))
+    item_name = forms.CharField(label="Name", widget=forms.TextInput(attrs={'placeholder':'Item Name', 'class':'form-control'}))
 
     class Meta:
         model = ShoppingListItems
-        fields = ['item']
+        fields = ['item_name']

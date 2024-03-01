@@ -30,8 +30,11 @@ class CartItems(models.Model):
 
 
 class ShoppingListItems(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     item_name = models.CharField(max_length=200)
+
+    def __str__(self) -> str:
+        return f'{self.item_name} on {self.user} list'
 
 
 #=============================================== Creation functions ========================================================
