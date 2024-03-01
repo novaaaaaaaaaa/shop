@@ -29,6 +29,11 @@ class CartItems(models.Model):
     quantity = models.IntegerField(default=1)
 
 
+class ShoppingListItems(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    item_name = models.CharField(max_length=200)
+
+
 #=============================================== Creation functions ========================================================
 
 def create_profile(sender, instance, created, **kwargs):

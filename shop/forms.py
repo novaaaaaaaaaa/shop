@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Profile, Stock, CartItems
+from .models import Profile, Stock, CartItems, ShoppingListItems
 
 class ProfileForm(ModelForm):
     phone = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder':'phone', 'class':'form-control'}), required=False)
@@ -29,3 +29,10 @@ class AddToCart(ModelForm):
     class Meta:
         model = CartItems
         fields = [ "item", "quantity" ]
+
+class AddToShoppingList(ModelForm):
+    item = forms.CharField(label="Name", widget=forms.TextInput(attrs={'placeholder':'Item Name', 'class':'form-control'}))
+
+    class Meta:
+        model = ShoppingListItems
+        fields = ['item']

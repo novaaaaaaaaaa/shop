@@ -47,20 +47,37 @@ def display_stock(request):
     }
     return render(request, 'shop/display_stock.html',context)
 
-# def add_to_cart(request):
-#     stock_items = Stock.objects.all()
-#     if request.method == 'POST':
-#         form = AddToCart(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             cart_items = CartItems.objects.all()
-#             latest_record = cart_items[:-1]
-#             latest_record.custID = request.user.id
+def add_to_cart(request):
+    stock_items = Stock.objects.all()
+    if request.method == 'POST':
+        form = AddToCart(request.POST)
+        if form.is_valid():
+            form.save()
+            cart_items = CartItems.objects.all()
+            latest_record = cart_items[:-1]
+            latest_record.custID = request.user.id
            
-#             latest_record.save()
+            latest_record.save()
 
-#             return redirect('shop:home')
-#         return render(request, 'shop/add_to_cart.html', {'form':form, 'stock_items':stock_items})
-#     else:
-#         form = AddToCart()
-#         return render(request, 'shop/add_to_cart.html', {'form':form, 'stock_items':stock_items})
+            return redirect('shop:home')
+        return render(request, 'shop/add_to_cart.html', {'form':form, 'stock_items':stock_items})
+    else:
+        form = AddToCart()
+        return render(request, 'shop/add_to_cart.html', {'form':form, 'stock_items':stock_items})
+
+def add_to_shopping_list(request):
+    if request.method == 'POST':
+        form = AddToShoppingList(request.POST)
+        if form.is_valid():
+            form.save()
+            latest_record = ShoppingListItems.objects.all()[-1]
+            current_user = request.user
+            latest_record.user = current_user.id
+            latest_record.save()
+
+            return redirect('shop:shopping_list')
+        return render(request, 'add_to_shopping_list.html', {'form':form})
+    else:
+        form = AddToShoppingList()
+        return render(request, 'add_to_shopping_list.html', {'form':form})
+
